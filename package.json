@@ -1,0 +1,38 @@
+{
+  "name": "zaxximo-main",
+  "version": "1.2.1",
+  "description": "An application for administrative access over assigning cleaning tasks for a company",
+  "main": "server.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.11.0",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.5",
+    "mongoose-sequence": "^5.3.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "react-transition-group": "^4.4.1",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Ricardo Zavala",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rzavala1989/zaxximo/issues"
+  },
+  "homepage": "https://github.com/rzavala1989/zaxximo#readme"
+}

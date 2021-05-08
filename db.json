@@ -1,0 +1,45 @@
+{
+  "logs": [
+    {
+      "id": 3,
+      "message": "1122 wireless down as well",
+      "attention": false,
+      "staff": "Dan Rather"
+    },
+    {
+      "id": 4,
+      "message": "Workstation 026 is up and running",
+      "attention": true,
+      "staff": "Jan Rather"
+    },
+    {
+      "id": 5,
+      "message": "Make the news great again!",
+      "attention": false,
+      "staff": "Dan Rather"
+    }
+  ],
+  "staff": [
+    {
+      "id": 1,
+      "firstName": "Dan",
+      "lastName": "Rather",
+      "email": "danrather@gmail.com",
+      "password": "danrather"
+    },
+    {
+      "id": 2,
+      "firstName": "Jan",
+      "lastName": "Rather",
+      "email": "janrather@gmail.com",
+      "password": "janrather"
+    },
+    {
+      "firstName": "Ricardo",
+      "lastName": "Zavala",
+      "email": "ricardozavala@gmail.com",
+      "password": "ricardozavala",
+      "id": 8
+    }
+  ]
+}
