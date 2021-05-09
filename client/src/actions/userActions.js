@@ -1,7 +1,16 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  USER_LOADING,
+  GET_STAFF,
+  ADD_STAFF,
+  DELETE_STAFF,
+  SET_LOADING,
+  STAFF_ERROR,
+} from "./types";
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
   axios
@@ -58,4 +67,73 @@ export const logoutUser = () => (dispatch) => {
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
+};
+
+export const getStaff = () => async (dispatch) => {
+  try {
+    setLoading();
+
+    const res = await fetch("/api/users");
+    const data = await res.json();
+
+    dispatch({
+      type: GET_STAFF,
+      payload: data.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: STAFF_ERROR,
+      payload: err,
+    });
+  }
+};
+export const addStaff = (s) => async (dispatch) => {
+  try {
+    setLoading();
+
+    const res = await fetch("/api/users/register", {
+      method: "POST",
+      body: JSON.stringify(s),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+
+    dispatch({
+      type: ADD_STAFF,
+      payload: data.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: STAFF_ERROR,
+      payload: err,
+    });
+  }
+};
+
+export const deleteStaff = (id) => async (dispatch) => {
+  try {
+    setLoading();
+
+    await fetch(`/api/users/${id}`, {
+      method: "DELETE",
+    });
+
+    dispatch({
+      type: DELETE_STAFF,
+      payload: id,
+    });
+  } catch (err) {
+    dispatch({
+      type: STAFF_ERROR,
+      payload: err,
+    });
+  }
+};
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING,
+  };
 };

@@ -45,7 +45,7 @@ function SearchBar() {
             </li>
           </ul>
 
-          <ul class="sidenav" id="mobile-demo">
+          <ul class="sidenav" id="mobile-demo" style={{ float: "right" }}>
             <li>
               <Link to="/about">About</Link>
             </li>
