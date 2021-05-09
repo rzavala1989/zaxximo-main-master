@@ -121,4 +121,46 @@ router.get(
   }
 );
 
+// @route   DELETE api/users/:id
+// @desc    Delete user
+// @access  Private
+router.delete("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        error: "Staff member not found",
+      });
+    }
+    await user.remove();
+
+    res.status(201).json({
+      success: true,
+      data: {},
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: err,
+    });
+  }
+});
+
+//Get users (all)
+//GET api/users
+router.get("/", async (req, res, next) => {
+  try {
+    const user = await User.find();
+
+    return res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, error: err });
+  }
+});
+
 module.exports = router;
