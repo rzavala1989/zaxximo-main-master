@@ -12,7 +12,7 @@ const AddButton = () => {
       <div className="fixed-action-btn">
         <a
           href="#add-modal"
-          className="btn-floating pulse btn-large red darken-4 modal-trigger tooltipped"
+          className="btn-floating pulse btn-large pink lighten-2 modal-trigger tooltipped"
           data-position="left"
           data-tooltip="Add a task"
         >
@@ -32,7 +32,7 @@ const AddButton = () => {
           <li>
             <a
               href="#add-staff-modal"
-              className="btn-floating red modal-trigger tooltipped"
+              className="btn-floating  indigo lighten-1 modal-trigger tooltipped"
               data-position="left"
               data-tooltip="Add staff member"
             >

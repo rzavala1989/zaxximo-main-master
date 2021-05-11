@@ -5,7 +5,7 @@ import { deleteLog, setCurrent } from "../../actions/logActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 const LogItem = ({ log, deleteLog, setCurrent }) => {
-  const { attention, id, _id, message, staff, date } = log;
+  const { attention, id, _id, message, user, date } = log;
 
   document.addEventListener("DOMContentLoaded", function () {
     var elems = document.querySelectorAll(".tooltipped");
@@ -14,7 +14,7 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
 
   const onDelete = () => {
     deleteLog(_id);
-    M.toast({ html: "Log deleted from tasks" });
+    M.toast({ html: `Log ${id} deleted from tasks` });
   };
 
   const onEdit = () => {
@@ -22,15 +22,21 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
   };
 
   return (
-    <li className="collection-item highlight first-log">
+    <li
+      data-position="left"
+      data-tooltip="Edit or reassign task"
+      className={`collection-item highlight ${
+        attention ? "grey lighten-1" : ""
+      } 'highlight first-log`}
+    >
       <div>
         <a
           onClick={onEdit}
           href="#edit-modal"
-          data-position="left"
-          data-tooltip="Edit or reassign task"
           className={`modal-trigger tooltipped ${
-            attention ? "completed red-text lighten-4" : "red-text"
+            attention
+              ? "completed indigo-text lighten-4"
+              : " modal-trigger tooltipped indigo-text"
           }`}
         >
           {message}
@@ -38,14 +44,23 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
         <br />
         <span className="grey-text">
           <span className="black-text">ID #{id}</span> assigned to{" "}
-          <span className="black-text">{staff}</span>
+          <span className="black-text">{user}</span>
           {attention ? (
             <span>
               <span>&nbsp;</span>
-              <span id="completed-text" className="red darken-4>">
+              <span id="completed-text" className="indigo darken-4>">
                 &nbsp;Completed&nbsp;
               </span>{" "}
-              on {<DayJS format="ddd, MMM D, YYYY, h:mm A">{Date.now()}</DayJS>}
+              <strong>
+                <span style={{ color: "black" }}>
+                  on{" "}
+                  {
+                    <DayJS format="ddd, MMM D, YYYY, h:mm A">
+                      {Date.now()}
+                    </DayJS>
+                  }
+                </span>
+              </strong>
             </span>
           ) : (
             <span>

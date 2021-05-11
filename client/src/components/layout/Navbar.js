@@ -12,9 +12,8 @@ function SearchBar() {
     <div>
       <nav
         style={{
-          borderBottom: "8px solid #ad020a",
+          borderBottom: "8px solid #ece8ff",
         }}
-        className="red lighten-1"
       >
         <div className="nav-wrapper">
           <Link to="/" className="brand-logo" id="zaxximo-logo">
@@ -32,16 +31,24 @@ function SearchBar() {
 
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
-              <Link to="/about">About</Link>
+              <Link className="navlinks" to="/about">
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/login">Logout</Link>
+              <Link className="navlinks" to="/login">
+                Logout
+              </Link>
             </li>
             <li>
-              <Link to="/register">Register</Link>
+              <Link className="navlinks" to="/register">
+                Register
+              </Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link className="navlinks" to="/login">
+                Login
+              </Link>
             </li>
           </ul>
 

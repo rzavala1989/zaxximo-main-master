@@ -1,26 +1,26 @@
 const express = require("express");
 const router = express.Router();
-const Staff = require("../models/Staff");
+const User = require("../models/User");
 const Log = require("../models/Log");
 
 router.get("/", (req, res) => {
   Log.find()
     .sort({ date: -1 })
     .then((logs) => res.json(logs))
-    .catch((err) => res.status(404).json({ nopostfound: "No posts found" }));
+    .catch((err) => res.status(404).json({ nopostfound: "No logs found" }));
 });
 
 router.post("/", async (req, res) => {
-  const s = await Staff.findOne({ fullName: req.body.staff });
+  const u = await User.findOne({ fullName: req.body.user });
 
-  if (!s) {
+  if (!u) {
     return res.status(400).json({
       success: false,
       error: "Staff member not found",
     });
   }
 
-  req.body._staff = s._id;
+  req.body._user = u._id;
 
   try {
     const log = await Log.create(req.body);
@@ -48,16 +48,16 @@ router.put("/:id", async (req, res) => {
       });
     }
 
-    const staff = await Staff.findOne({ fullName: req.body.staff });
+    const user = await User.findOne({ fullName: req.body.user });
 
-    if (!staff) {
+    if (!user) {
       return res.status(400).json({
         success: false,
         error: "Staff member not found",
       });
     }
 
-    req.body._staff = staff._id;
+    req.body._user = user._id;
 
     // req.body.date = Date.now();
 

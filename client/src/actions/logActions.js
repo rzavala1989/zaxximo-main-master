@@ -106,20 +106,6 @@ export const deleteLog = (id) => async (dispatch) => {
   }
 };
 
-// export const deleteLog = (id) => async (dispatch) => {
-//   try {
-//     setLoading();
-
-//     await fetch(`/api/logs/${id}`, {
-//       method: "delete",
-//     });
-
-//     dispatch({ type: DELETE_LOG, payload: id });
-//   } catch (err) {
-//     dispatch({ type: LOGS_ERROR, payload: err });
-//   }
-// };
-
 // keep current log in order to edit
 export const setCurrent = (log) => {
   return {
@@ -128,33 +114,14 @@ export const setCurrent = (log) => {
   };
 };
 
-// export const updateLog = (log) => (dispatch) => {
-//   setLoading();
-
-//   axios
-//     .put(`/api/logs/${log.id}`)
-//     .then((res) =>
-//       dispatch({
-//         type: UPDATE_LOG,
-//         payload: res.data,
-//       })
-//     )
-//     .catch((error) =>
-//       dispatch({
-//         type: LOGS_ERROR,
-//         payload: error.response.statusText,
-//       })
-//     );
-// };
-
 export const updateLog = (log) => async (dispatch) => {
   try {
     setLoading();
-    const { message, attention, staff, id } = log;
+    const { message, attention, user, id } = log;
     log.date = new Date();
     const res = await fetch(`/api/logs/${id}`, {
       method: "put",
-      body: JSON.stringify({ message, attention, staff }),
+      body: JSON.stringify({ message, attention, user }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
@@ -164,28 +131,6 @@ export const updateLog = (log) => async (dispatch) => {
     dispatch({ type: LOGS_ERROR, payload: err });
   }
 };
-
-// export const updateLog = (log) => async (dispatch) => {
-//   const config = {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   };
-
-//   try {
-//     const res = await axios.put(`/api/logs/${log._id}`, log, config);
-
-//     dispatch({
-//       type: UPDATE_LOG,
-//       payload: res.data,
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: LOGS_ERROR,
-//       payload: err.response.msg,
-//     });
-//   }
-// };
 
 export const setLoading = () => {
   return {

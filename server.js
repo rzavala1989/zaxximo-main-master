@@ -4,7 +4,6 @@ const path = require("path");
 const passport = require("passport");
 
 const users = require("./routes/users");
-const staff = require("./routes/staff");
 const logs = require("./routes/logs");
 
 const app = express();
@@ -33,7 +32,6 @@ require("./config/passport")(passport);
 
 //  Routes
 app.use("/api/users", users);
-app.use("/api/staff", staff);
 app.use("/api/logs", logs);
 
 if (process.env.NODE_ENV === "production") {

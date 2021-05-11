@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { getStaff } from "../../actions/staffActions";
+import { getStaff } from "../../actions/userActions";
 
-const StaffSelectOptions = ({ getStaff, staff: { staff, loading } }) => {
+const StaffSelectOptions = ({ getStaff, user: { users, loading } }) => {
   useEffect(() => {
     getStaff();
     // eslint-disable-next-line
@@ -11,17 +11,17 @@ const StaffSelectOptions = ({ getStaff, staff: { staff, loading } }) => {
 
   return (
     !loading &&
-    staff !== null &&
-    staff.map((s) => (
-      <option key={s._id} value={`${s.fullName}`}>
-        {`${s.fullName}`}
+    users !== null &&
+    users.map((user) => (
+      <option key={user._id} value={`${user.fullName}`}>
+        {`${user.fullName}`}
       </option>
     ))
   );
 };
 
 const mapStateToProps = (state) => ({
-  staff: state.staff,
+  user: state.user,
 });
 
 export default connect(mapStateToProps, { getStaff })(StaffSelectOptions);

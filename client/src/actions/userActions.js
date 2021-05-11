@@ -42,7 +42,7 @@ export const loginUser = (userData) => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data,
+        payload: err.response,
       })
     );
 };
@@ -69,48 +69,63 @@ export const logoutUser = () => (dispatch) => {
   dispatch(setCurrentUser({}));
 };
 
-export const getStaff = () => async (dispatch) => {
-  try {
-    setLoading();
-
-    const res = await fetch("/api/users");
-    const data = await res.json();
-
-    dispatch({
-      type: GET_STAFF,
-      payload: data.data,
-    });
-  } catch (err) {
-    dispatch({
-      type: STAFF_ERROR,
-      payload: err,
-    });
-  }
+export const getStaff = () => (dispatch) => {
+  dispatch(setLoading());
+  axios
+    .get("/api/users")
+    .then((res) =>
+      dispatch({
+        type: GET_STAFF,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err,
+      })
+    );
 };
-export const addStaff = (s) => async (dispatch) => {
-  try {
-    setLoading();
-
-    const res = await fetch("/api/users/register", {
-      method: "POST",
-      body: JSON.stringify(s),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-
-    dispatch({
-      type: ADD_STAFF,
-      payload: data.data,
-    });
-  } catch (err) {
-    dispatch({
-      type: STAFF_ERROR,
-      payload: err,
-    });
-  }
+export const addStaff = (userData) => (dispatch) => {
+  axios
+    .post("/api/users/register", userData)
+    .then((s) =>
+      dispatch({
+        type: ADD_STAFF,
+        payload: s.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response,
+      })
+    );
 };
+// export const addStaff = (s) => async (dispatch) => {
+//   try {
+//     setLoading();
+
+//     const res = await fetch("/api/users/register", {
+//       method: "POST",
+//       body: JSON.stringify(s),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
+//     const data = await res.json();
+
+//     dispatch({
+//       type: ADD_STAFF,
+//       payload: data.data,
+//     });
+//   } catch (err) {
+//     dispatch({
+//       type: STAFF_ERROR,
+//       payload: err,
+//     });
+//   }
+// };
 
 export const deleteStaff = (id) => async (dispatch) => {
   try {

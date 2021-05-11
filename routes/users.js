@@ -150,17 +150,11 @@ router.delete("/:id", async (req, res) => {
 
 //Get users (all)
 //GET api/users
-router.get("/", async (req, res, next) => {
-  try {
-    const user = await User.find();
-
-    return res.status(200).json({
-      success: true,
-      data: user,
-    });
-  } catch (err) {
-    return res.status(500).json({ success: false, error: err });
-  }
+router.get("/", (req, res) => {
+  User.find()
+    .sort({ lastName: -1 })
+    .then((users) => res.json(users))
+    .catch((err) => res.status(404).json({ nousersfound: "No users found" }));
 });
 
 module.exports = router;

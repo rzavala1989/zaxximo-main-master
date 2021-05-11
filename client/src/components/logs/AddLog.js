@@ -7,10 +7,10 @@ import M from "materialize-css/dist/js/materialize.min.js";
 const AddLog = ({ addLog }) => {
   const [message, setMessage] = useState("");
   const [attention, setAttention] = useState(false);
-  const [staff, setStaff] = useState("");
+  const [user, setUser] = useState("");
 
   const onSubmit = () => {
-    if (message === "" || staff === "") {
+    if (message === "" || user === "") {
       M.toast({ html: "Please enter a message and staff member" });
     } else {
       //set props for new log
@@ -18,13 +18,13 @@ const AddLog = ({ addLog }) => {
       addLog({
         message,
         attention,
-        staff,
+        user,
       });
 
-      M.toast({ html: `Task assigned for ${staff}` });
+      M.toast({ html: `Task assigned for  ${user}` });
 
       setMessage("");
-      setStaff("");
+      setUser("");
       setAttention(false);
     }
   };
@@ -49,10 +49,10 @@ const AddLog = ({ addLog }) => {
         <div className="row">
           <div className="input-field">
             <select
-              name="staff"
-              value={staff}
+              name="user"
+              value={user}
               className="browser-default"
-              onChange={(e) => setStaff(e.target.value)}
+              onChange={(e) => setUser(e.target.value)}
             >
               <option value="" disabled>
                 Assign Task To:

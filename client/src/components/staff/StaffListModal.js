@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 
 import StaffItem from "./StaffItem";
 import { connect } from "react-redux";
-import { getStaff } from "../../actions/staffActions";
+import { getStaff } from "../../actions/userActions";
 
 // import LogItem from "./LogItem";
 
-const StaffListModal = ({ getStaff, staff: { staff, loading } }) => {
+const StaffListModal = ({ getStaff, user: { users, loading } }) => {
   useEffect(() => {
     getStaff();
   }, []);
@@ -14,13 +14,13 @@ const StaffListModal = ({ getStaff, staff: { staff, loading } }) => {
   return (
     <div id="staff-list-modal" className="modal">
       <div className="modal-content">
-        <h4>Technician List</h4>
+        <h4>List of Staff Members</h4>
         <ul className="collection">
           {!loading &&
-            staff !== null &&
-            staff.map((staff) => (
+            users !== null &&
+            users.map((user) => (
               <li className="collection-item">
-                <StaffItem staff={staff} key={staff._id} />
+                <StaffItem user={user} key={user._id} />
               </li>
             ))}
         </ul>
@@ -30,7 +30,7 @@ const StaffListModal = ({ getStaff, staff: { staff, loading } }) => {
 };
 
 const mapStateToProps = (state) => ({
-  staff: state.staff,
+  user: state.user,
 });
 
 export default connect(mapStateToProps, { getStaff })(StaffListModal);

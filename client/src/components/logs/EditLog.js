@@ -7,25 +7,25 @@ import M from "materialize-css/dist/js/materialize.min.js";
 const EditLog = ({ log: { current }, updateLog }) => {
   const [message, setMessage] = useState("");
   const [attention, setAttention] = useState(false);
-  const [staff, setStaff] = useState("");
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     if (current) {
       setMessage(current.message);
       setAttention(current.attention);
-      setStaff(current.staff);
+      setUser(current.user);
     }
   }, [current]);
 
   const onSubmit = () => {
-    if (!message || !staff) {
+    if (!message || !user) {
       M.toast({ html: "Please fill out message and staff fields" });
     } else {
       const updated = {
         id: current._id,
         message,
         attention,
-        staff,
+        user,
         // date: new Date(),
       };
       updateLog(updated);
@@ -33,9 +33,9 @@ const EditLog = ({ log: { current }, updateLog }) => {
         M.toast({
           html: `"${current.message}" has been updated to "${updated.message}"`,
         });
-      } else if (updated.staff !== current.staff) {
+      } else if (updated.user !== current.user) {
         M.toast({
-          html: `"${current.message}" has been reassigned to ${updated.staff}`,
+          html: `"${current.message}" has been reassigned to ${updated.user}`,
         });
       } else if (updated.attention !== current.attention) {
         M.toast({
@@ -44,7 +44,7 @@ const EditLog = ({ log: { current }, updateLog }) => {
       }
     }
     setMessage("");
-    setStaff("");
+    setUser("");
     setAttention(false);
   };
   return (
@@ -66,10 +66,10 @@ const EditLog = ({ log: { current }, updateLog }) => {
           <div className="input-field">
             <label htmlFor=""></label>
             <select
-              name="staff"
-              value={staff}
+              name="user"
+              value={user}
               className="browser-default"
-              onChange={(e) => setStaff(e.target.value)}
+              onChange={(e) => setUser(e.target.value)}
             >
               <option value="" disabled>
                 Reassign Task To:

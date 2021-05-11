@@ -19,6 +19,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css";
 import "./App.css";
+// import "./App2.css";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {

@@ -1,38 +1,35 @@
 import React from "react";
+import { Collapsible, CollapsibleItem, Icon } from "react-materialize";
 
 const InfoCard = () => {
   return (
-    <div className="card sticky-action" style={{ overflow: "visible" }}>
-      <div className="card-image waves-effect waves-block waves-light">
-        <img className="activator" src="istockphoto-870219332-612x612.jpg" />
-      </div>
-      <div className="card-content">
-        <span className="card-title activator grey-text text-darken-4">
-          Card Title<i className="material-icons right">more_vert</i>
-        </span>
-
-        <p>
-          <a href="#!">This is a link</a>
-        </p>
-      </div>
-
-      <div className="card-action">
-        <a href="#">This is a link</a>
-      </div>
-
-      <div
-        className="card-reveal"
-        style={{ display: "none", transform: "translateY(0%)" }}
+    <Collapsible accordion={false}>
+      <CollapsibleItem
+        expanded={false}
+        header="Better safe than sorry. That's my motto."
+        icon={<Icon>filter_drama</Icon>}
+        node="div"
       >
-        <span className="card-title grey-text text-darken-4">
-          Card Title<i className="material-icons right">close</i>
-        </span>
-        <p>
-          Here is some more information about this product that is only revealed
-          once clicked on.
-        </p>
-      </div>
-    </div>
+        Better safe than sorry. That's my motto.
+      </CollapsibleItem>
+      <CollapsibleItem
+        expanded={false}
+        header="Yeah, you do seem to have a little 'shit creek' action going."
+        icon={<Icon>place</Icon>}
+        node="div"
+      >
+        Yeah, you do seem to have a little 'shit creek' action going.
+      </CollapsibleItem>
+      <CollapsibleItem
+        expanded={false}
+        header="You know, FYI, you can buy a paddle. Did you not plan for this contingency?"
+        icon={<Icon>whatshot</Icon>}
+        node="div"
+      >
+        You know, FYI, you can buy a paddle. Did you not plan for this
+        contingency?
+      </CollapsibleItem>
+    </Collapsible>
   );
 };
 
