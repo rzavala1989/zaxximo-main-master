@@ -40,11 +40,11 @@ A fullstack MERN application that automates tasks for other users, as well as ad
 - Can view logged in user, as well as all user info in the database besides passwords
 - Logs have their general information, as well as the user's id that its assigned to
 
-## Built With
+## Built With AND IMPORTANT NOTE
 
 The client and the server are sharing the same repo.
 
-I am also building a React Native App that I plan on operating concurrently with the server in this repo. This Zaxximo web app is meant for admin use, once the authorization is constructed (as of now, any use can log in). However, the RN app will only be able to view their own tasks, and mark them as completed
+**\*\*** NOTE: I am also building a React Native App that I plan on operating concurrently with the server in this repo. This Zaxximo web app is meant for admin use, once the authorization is constructed (as of now, any use can log in). However, the RN app will only be able to view their own tasks, and mark them as completed**\*\***
 
 ### Front End
 
