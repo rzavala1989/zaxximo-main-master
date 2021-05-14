@@ -1,5 +1,5 @@
-import React from "react";
-import { Collapsible, CollapsibleItem, Icon } from "react-materialize";
+import React from 'react';
+import { Collapsible, CollapsibleItem, Icon } from 'react-materialize';
 
 const InfoCard = () => {
   return (
@@ -8,26 +8,27 @@ const InfoCard = () => {
         expanded={false}
         header="Better safe than sorry. That's my motto."
         icon={<Icon>filter_drama</Icon>}
-        node="div"
+        node='div'
       >
-        Better safe than sorry. That's my motto.
+        We exist because we have made it a habit to disregard routine cleaning
+        tasks
       </CollapsibleItem>
       <CollapsibleItem
         expanded={false}
-        header="Yeah, you do seem to have a little 'shit creek' action going."
+        header='You guys seem relentless; will you ever stop?'
         icon={<Icon>place</Icon>}
-        node="div"
+        node='div'
       >
-        Yeah, you do seem to have a little 'shit creek' action going.
+        Can't stop, won't stop
       </CollapsibleItem>
       <CollapsibleItem
         expanded={false}
-        header="You know, FYI, you can buy a paddle. Did you not plan for this contingency?"
+        header='Why is task management important?'
         icon={<Icon>whatshot</Icon>}
-        node="div"
+        node='div'
       >
-        You know, FYI, you can buy a paddle. Did you not plan for this
-        contingency?
+        Without giving too much away, it is the difference between and ordely
+        and miserable workplace
       </CollapsibleItem>
     </Collapsible>
   );

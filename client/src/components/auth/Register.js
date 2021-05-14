@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { registerUser } from "../../actions/userActions";
-import "materialize-css/dist/css/materialize.min.css";
-import M from "materialize-css/dist/js/materialize.min.js";
+import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/userActions';
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
+import classnames from 'classnames';
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      password2: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      password2: '',
       privilege: false,
       errors: {},
     };
@@ -39,9 +40,9 @@ class Register extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    if (this.email === "" || this.password === "") {
+    if (this.email === '' || this.password === '') {
       M.toast({
-        html: "All fields are required",
+        html: 'All fields are required',
       });
     } else if (this.password !== this.password2) {
       M.toast({
@@ -63,75 +64,97 @@ class Register extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div class="full-screen-container">
-        <div class="login-container">
-          <h3 class="login-title">Welcome To Zaxximo!</h3>
-          <form name="Subscription Form" onSubmit={this.onSubmit}>
-            <div class="name-input-group">
-              <div className="name-input">
+      <div class='full-screen-container-sign-up'>
+        <div class='login-container'>
+          <h3 class='login-title'>Welcome To Zaxximo!</h3>
+          <form name='Subscription Form' onSubmit={this.onSubmit}>
+            <div class='name-input-group'>
+              <div className='name-input'>
                 <label>First Name</label>
+                <span className='red-text'>{errors.firstName}</span>
                 <input
-                  id="firstName"
-                  type="text"
-                  name="firstName"
+                  id='firstName'
+                  type='text'
+                  name='firstName'
+                  className={classnames('', {
+                    invalid: errors.firstName,
+                  })}
                   value={this.state.firstName}
                   onChange={this.onChange}
                   error={errors.firstName}
                 />
               </div>
 
-              <div className="name-input">
+              <div className='name-input'>
                 <label>Last Name</label>
+                <span className='red-text'>{errors.lastName}</span>
                 <input
-                  id="lastName"
-                  type="text"
-                  name="lastName"
+                  id='lastName'
+                  type='text'
+                  name='lastName'
+                  className={classnames('', {
+                    invalid: errors.lastName,
+                  })}
                   value={this.state.lastName}
                   onChange={this.onChange}
                   error={errors.email}
                 />
               </div>
             </div>
-            <div class="input-group">
+            <div class='input-group'>
               <label>Email</label>
+              <span className='red-text'>{errors.email}</span>
               <input
-                id="email"
-                type="email"
-                name="email"
+                id='email'
+                type='email'
+                name='email'
+                className={classnames('', {
+                  invalid: errors.email,
+                })}
                 value={this.state.email}
                 onChange={this.onChange}
-                error={errors.lastName}
+                error={errors.email}
               />
             </div>
-            <div className="name-input-group">
-              <div class="name-input">
+            <div className='name-input-group'>
+              <div class='name-input'>
                 <label>Password</label>
+                <span className='red-text'>{errors.password}</span>
+
                 <input
-                  type="password"
-                  name="password"
+                  type='password'
+                  name='password'
+                  className={classnames('', {
+                    invalid: errors.password,
+                  })}
                   value={this.state.password}
                   onChange={this.onChange}
-                  error={errors}
-                  minLength="6"
+                  error={errors.password}
+                  minLength='6'
                 />
               </div>
-              <div class="name-input">
+              <div class='name-input'>
                 <label>Confirm Password</label>
+                <span className='red-text'>{errors.password2}</span>
+
                 <input
-                  type="password"
-                  name="password2"
+                  type='password'
+                  name='password2'
+                  className={classnames('', {
+                    invalid: errors.password2,
+                  })}
                   value={this.state.password2}
                   onChange={this.onChange}
-                  error={errors}
-                  minLength="6"
+                  error={errors.password2}
+                  minLength='6'
                 />
               </div>
             </div>
-            <div class="input-group">
-              <label className="checkbox-group">
+            <div class='input-group'>
+              <label className='checkbox-group'>
                 <input
-                  type="checkbox"
-                  className="filled-in"
+                  type='checkbox'
+                  className='filled-in'
                   checked={this.state.privilege}
                   value={this.state.privilege}
                   onClick={() =>
@@ -140,7 +163,7 @@ class Register extends Component {
                 />
                 <span>Is Admin</span>
               </label>
-              <button type="submit" class="login-button">
+              <button type='submit' class='login-button'>
                 Sign Up
               </button>
             </div>

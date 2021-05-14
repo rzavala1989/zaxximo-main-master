@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
-
+import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/userActions';
 
@@ -55,9 +55,13 @@ class Login extends Component {
           <form name='Subscription Form' onSubmit={this.onSubmit}>
             <div class='input-group'>
               <label>Email</label>
+              <span className='red-text'>{errors.email}</span>
               <input
                 id='email'
                 type='email'
+                className={classnames('', {
+                  invalid: errors.email,
+                })}
                 name='email'
                 value={this.state.email}
                 onChange={this.onChange}
@@ -66,9 +70,13 @@ class Login extends Component {
             </div>
             <div class='input-group'>
               <label>Password</label>
+              <span className='red-text'>{errors.password}</span>
               <input
                 type='password'
                 name='password'
+                className={classnames('', {
+                  invalid: errors.password,
+                })}
                 value={this.state.password}
                 onChange={this.onChange}
                 error={errors}
