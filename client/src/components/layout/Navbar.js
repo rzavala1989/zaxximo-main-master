@@ -12,15 +12,23 @@ class Navbar extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.user;
+    const {
+      isAuthenticated,
+      user: { firstName, lastName },
+    } = this.props.user;
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems);
     });
 
     const guestLinks = (
       <Fragment>
+        <li>
+          <Link className='navlinks' to='/about'>
+            About
+          </Link>
+        </li>
         <li>
           <Link className='navlinks' to='/register'>
             Register
@@ -36,12 +44,16 @@ class Navbar extends Component {
 
     const authLinks = (
       <Fragment>
+        <li className='navlinks' style={{ color: 'chartreuse' }}>
+          Welcome, {firstName} {lastName}!{' '}
+        </li>
         <li>
-          <Link
-            className='navlinks'
-            to='/login'
-            onClick={this.onLogoutClick.bind(this)}
-          >
+          <Link className='navlinks' to='/about'>
+            About
+          </Link>
+        </li>
+        <li>
+          <Link className='navlinks' to='/login' onClick={this.onLogoutClick.bind(this)}>
             Logout
           </Link>
         </li>
@@ -60,21 +72,11 @@ class Navbar extends Component {
               {' '}
               Zaxximo
             </Link>
-            <a
-              href='#'
-              data-target='mobile-demo'
-              class='sidenav-trigger'
-              style={{ float: 'left' }}
-            >
+            <a href='#' data-target='mobile-demo' class='sidenav-trigger' style={{ float: 'left' }}>
               <i class='material-icons'>menu</i>
             </a>
 
             <ul id='nav-mobile' className='right hide-on-med-and-down'>
-              <li>
-                <Link className='navlinks' to='/about'>
-                  About
-                </Link>
-              </li>
               {isAuthenticated ? authLinks : guestLinks}
             </ul>
 
@@ -94,4 +96,7 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Navbar);

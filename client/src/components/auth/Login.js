@@ -87,6 +87,11 @@ class Login extends Component {
               <button type='submit' class='login-button'>
                 Sign In
               </button>
+              <h6 style={{ color: 'chartreuse' }}>For demo purposes (admin user):</h6>
+              <ul style={{ color: 'chartreuse' }}>
+                <li>email: jamescash@gmail.com</li>
+                <li>password: jamescash</li>
+              </ul>
             </div>
           </form>
         </div>
@@ -100,4 +105,7 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
